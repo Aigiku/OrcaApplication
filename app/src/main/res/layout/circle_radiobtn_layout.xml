@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+
+    <TextView
+        android:id="@+id/my_mold_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/my_mold"
+        android:textSize="@dimen/mold_title_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/circle_my_mold_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_field_design"
+        android:hint="@string/mold_height"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/circle_my_mold_diameter"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_mold_title" />
+
+    <EditText
+        android:id="@+id/circle_my_mold_diameter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_field_design"
+        android:hint="@string/mold_diameter"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/circle_my_mold_height"
+        app:layout_constraintTop_toBottomOf="@+id/my_mold_title" />
+
+    <TextView
+        android:id="@+id/recipe_mold_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/recipe_mold"
+        android:textSize="@dimen/mold_title_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circle_my_mold_height" />
+
+
+    <EditText
+        android:id="@+id/circle_recipe_mold_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_field_design"
+        android:hint="@string/mold_height"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ircle_recipe_mold_height"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_mold_title" />
+
+    <EditText
+        android:id="@+id/ircle_recipe_mold_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_field_design"
+        android:hint="@string/mold_diameter"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/circle_recipe_mold_height"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_mold_title" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

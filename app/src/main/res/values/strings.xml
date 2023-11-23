@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">OrcaApplication</string>
+
+    <string name="radio_circle_title">丸型</string>
+    <string name="radio_square_title">スクエア型</string>
+    <string name="radio_magnification_title">倍率指定</string>
+
+
+    <string name="my_mold">使用する型</string>
+    <string name="recipe_mold">レシピの型</string>
+    <string name="mold_height">高さ（cm）</string>
+    <string name="mold_weight">横幅（cm）</string>
+    <string name="mold_vertical">縦幅（cm）</string>
+    <string name="mold_diameter">直径（cm）</string>
+    <string name="magnification">倍率を入力してください（範囲: 0.25~5）</string>
+
+
+</resources>
