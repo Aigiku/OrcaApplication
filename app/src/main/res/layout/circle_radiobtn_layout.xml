@@ -20,19 +20,6 @@
 
 
     <EditText
-        android:id="@+id/circle_my_mold_height"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/edit_field_design"
-        android:hint="@string/mold_height"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/circle_my_mold_diameter"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_mold_title" />
-
-    <EditText
         android:id="@+id/circle_my_mold_diameter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,9 +27,22 @@
         android:background="@drawable/edit_field_design"
         android:hint="@string/mold_diameter"
         android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/circle_my_mold_height"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_mold_title" />
+
+    <EditText
+        android:id="@+id/circle_my_mold_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_field_design"
+        android:hint="@string/mold_height"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/circle_my_mold_height"
+        app:layout_constraintStart_toEndOf="@+id/circle_my_mold_diameter"
         app:layout_constraintTop_toBottomOf="@+id/my_mold_title" />
 
     <TextView
@@ -67,11 +67,11 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ircle_recipe_mold_height"
+        app:layout_constraintStart_toEndOf="@+id/ircle_recipe_mold_mold_diameter"
         app:layout_constraintTop_toBottomOf="@+id/recipe_mold_title" />
 
     <EditText
-        android:id="@+id/ircle_recipe_mold_height"
+        android:id="@+id/ircle_recipe_mold_mold_diameter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

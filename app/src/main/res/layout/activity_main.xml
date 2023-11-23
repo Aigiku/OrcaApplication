@@ -37,5 +37,41 @@
 
     </RadioGroup>
 
+<!--    円形の入力欄-->
+    <include
+        android:id="@+id/circle_edview"
+        layout="@layout/circle_radiobtn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup"
+        android:visibility="gone"/>
+<!--        constraintlayoutを使用しているため、bottomofで設定-->
+
+<!--スクエア型の入力欄-->
+    <include
+        android:id="@+id/square_edview"
+        layout="@layout/square_radiobtn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup"
+        android:visibility="gone"
+    />
+
+
+<!--    倍率指定の入力欄-->
+    <include
+        android:id="@+id/magnification_edview"
+        layout="@layout/magnification_radiobtn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup"
+        android:visibility="gone"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
