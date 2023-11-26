@@ -74,5 +74,15 @@
         app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup"
         android:visibility="gone"/>
 
+    <TextView
+        android:id="@+id/main_view"
+        android:textSize="64sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

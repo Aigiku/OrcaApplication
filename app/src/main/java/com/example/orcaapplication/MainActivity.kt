@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         val squareEdView = findViewById<ConstraintLayout>(R.id.square_edview)
         val magnificationEdView = findViewById<ConstraintLayout>(R.id.magnification_edview)
 
+        val tv :TextView = findViewById(R.id.main_view)
+
 
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
@@ -25,7 +28,6 @@ class MainActivity : AppCompatActivity() {
                     circleEdView.visibility = View.VISIBLE
                     squareEdView.visibility = View.GONE
                     magnificationEdView.visibility = View.GONE
-//
                 }
 
                 R.id.radio_square_title-> {
@@ -33,11 +35,14 @@ class MainActivity : AppCompatActivity() {
                     squareEdView.visibility = View.VISIBLE
                     magnificationEdView.visibility = View.GONE
 
+
+
                 }
                 R.id.radio_magnification_title -> {
                     circleEdView.visibility = View.GONE
                     squareEdView.visibility = View.GONE
                     magnificationEdView.visibility = View.VISIBLE
+
                 }
             }
         }

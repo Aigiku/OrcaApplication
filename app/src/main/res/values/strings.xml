@@ -13,6 +13,7 @@
     <string name="mold_vertical">縦幅（cm）</string>
     <string name="mold_diameter">直径（cm）</string>
     <string name="magnification">倍率を入力してください（範囲: 0.25~5）</string>
-
-
+    <string name="magnification_ed_hint">倍率を入力</string>
+    <string name="multiple_text">倍</string>
+    <string name="list_unit">g</string>
 </resources>
