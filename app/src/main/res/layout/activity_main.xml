@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -38,7 +37,7 @@
 
     </RadioGroup>
 
-<!--    円形の入力欄-->
+    <!--    円形の入力欄-->
     <include
         android:id="@+id/circle_edview"
         layout="@layout/circle_radiobtn_layout"
@@ -46,43 +45,112 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup"
-        android:visibility="gone"/>
-<!--        constraintlayoutを使用しているため、bottomofで設定-->
+        app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup" />
+    <!--        constraintlayoutを使用しているため、bottomofで設定-->
 
-<!--スクエア型の入力欄-->
+    <!--スクエア型の入力欄-->
     <include
         android:id="@+id/square_edview"
         layout="@layout/square_radiobtn_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup"
-        android:visibility="gone"
-    />
+
+        />
 
 
-<!--    倍率指定の入力欄-->
+    <!--    倍率指定の入力欄-->
     <include
         android:id="@+id/magnification_edview"
         layout="@layout/magnification_radiobtn_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup" />
 
-    <TextView
-        android:id="@+id/main_view"
-        android:textSize="64sp"
+
+    <EditText
+        android:id="@+id/ed_ingredients_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/edit_field_design"
+        android:ems="10"
+        android:hint="@string/ed_ingredients_name"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:nextFocusForward="@+id/ed_ingredients_amount"
+        app:layout_constraintBottom_toTopOf="@+id/addbtn"
+        app:layout_constraintEnd_toStartOf="@+id/ed_ingredients_amount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/ed_ingredients_amount"
+        style="@style/MyEditTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="5"
+        android:hint="@string/ed_ingredients_amount"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/addbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ed_ingredients_name"
+        android:imeOptions="actionDone"/>
+
+
+    <Button
+        android:id="@+id/addbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/add_btn_text"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+    <Button
+        android:id="@+id/aplaybtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/apply_btn_text"
+        app:layout_constraintBottom_toTopOf="@+id/ed_ingredients_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/listviewtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/list_multiple_viewtext"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintStart_toEndOf="@+id/addbtn" />
+
+    <TextView
+        android:id="@+id/list_multiple_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/listviewtext"
+        app:layout_constraintStart_toStartOf="@+id/listviewtext"
+        app:layout_constraintTop_toBottomOf="@+id/listviewtext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

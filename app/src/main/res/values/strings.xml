@@ -15,5 +15,12 @@
     <string name="magnification">倍率を入力してください（範囲: 0.25~5）</string>
     <string name="magnification_ed_hint">倍率を入力</string>
     <string name="multiple_text">倍</string>
+    <string name="list_multiple_viewtext">現在の倍率</string>
     <string name="list_unit">g</string>
+
+    <string name="apply_btn_text">倍率を適用する</string>
+    <string name="add_btn_text">リストへ追加</string>
+    
+    <string name="ed_ingredients_name">材料名</string>
+    <string name="ed_ingredients_amount">量（g）</string>
 </resources>
