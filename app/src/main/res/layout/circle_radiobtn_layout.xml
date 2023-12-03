@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/mold_height"
-        style="@style/MyEditTextStyle"
+        style="@style/MyEditTextStyleDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ircle_recipe_mold_mold_diameter"

@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.radio_square_title-> {
-                    circleEdView.visibility = View.GONE
+                    circleEdView.visibility = View.INVISIBLE
                     squareEdView.visibility = View.VISIBLE
                     magnificationEdView.visibility = View.GONE
 
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 R.id.radio_magnification_title -> {
-                    circleEdView.visibility = View.GONE
+                    circleEdView.visibility = View.INVISIBLE
                     squareEdView.visibility = View.GONE
                     magnificationEdView.visibility = View.VISIBLE
 

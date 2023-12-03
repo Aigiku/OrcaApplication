@@ -17,6 +17,9 @@
     <string name="multiple_text">倍</string>
     <string name="list_multiple_viewtext">現在の倍率</string>
     <string name="list_unit">g</string>
+    <string name="name_edit">材料名</string>
+    <string name="amount_edit">使用量（g単位）</string>
+
 
     <string name="apply_btn_text">倍率を適用する</string>
     <string name="add_btn_text">リストへ追加</string>

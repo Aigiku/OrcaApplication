@@ -7,71 +7,72 @@
     tools:context=".MainActivity">
 
 
-    <RadioGroup
-        android:id="@+id/mold_tybe_radiogroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioButton
-            android:id="@+id/radio_circle_title"
+        <RadioGroup
+            android:id="@+id/mold_tybe_radiogroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/radio_circle_title" />
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <RadioButton
-            android:id="@+id/radio_square_title"
-            android:layout_width="wrap_content"
+            <RadioButton
+                android:id="@+id/radio_circle_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_circle_title" />
+
+            <RadioButton
+                android:id="@+id/radio_square_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_square_title" />
+
+            <RadioButton
+                android:id="@+id/radio_magnification_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_magnification_title" />
+
+        </RadioGroup>
+
+        <!--    円形の入力欄-->
+        <include
+            android:id="@+id/circle_edview"
+            layout="@layout/circle_radiobtn_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/radio_square_title" />
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup" />
+        <!--  適用ボタンの位置制約のため、円形のみinvisible表示（kotlinファイルも同様）    -->
 
-        <RadioButton
-            android:id="@+id/radio_magnification_title"
-            android:layout_width="wrap_content"
+        <!--スクエア型の入力欄-->
+        <include
+            android:id="@+id/square_edview"
+            layout="@layout/square_radiobtn_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/radio_magnification_title" />
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup"
 
-    </RadioGroup>
-
-    <!--    円形の入力欄-->
-    <include
-        android:id="@+id/circle_edview"
-        layout="@layout/circle_radiobtn_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup" />
-    <!--        constraintlayoutを使用しているため、bottomofで設定-->
-
-    <!--スクエア型の入力欄-->
-    <include
-        android:id="@+id/square_edview"
-        layout="@layout/square_radiobtn_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup"
-
-        />
+            />
 
 
-    <!--    倍率指定の入力欄-->
-    <include
-        android:id="@+id/magnification_edview"
-        layout="@layout/magnification_radiobtn_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup" />
+        <!--    倍率指定の入力欄-->
+        <include
+            android:id="@+id/magnification_edview"
+            layout="@layout/magnification_radiobtn_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mold_tybe_radiogroup" />
 
 
     <EditText
@@ -92,6 +93,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <EditText
         android:id="@+id/ed_ingredients_amount"
         style="@style/MyEditTextStyle"
@@ -102,13 +104,12 @@
         android:layout_marginBottom="8dp"
         android:ems="5"
         android:hint="@string/ed_ingredients_amount"
-        android:inputType="numberDecimal"
+        android:imeOptions="actionDone"
+        android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/addbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ed_ingredients_name"
-        android:imeOptions="actionDone"/>
-
+        app:layout_constraintStart_toEndOf="@+id/ed_ingredients_name" />
 
     <Button
         android:id="@+id/addbtn"
@@ -120,37 +121,66 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/aplaybtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/apply_btn_text"
-        app:layout_constraintBottom_toTopOf="@+id/ed_ingredients_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circle_edview" />
 
     <TextView
         android:id="@+id/listviewtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/list_multiple_viewtext"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/addbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.408"
-        app:layout_constraintStart_toEndOf="@+id/addbtn" />
+        app:layout_constraintStart_toEndOf="@+id/addbtn"
+        app:layout_constraintTop_toBottomOf="@+id/ed_ingredients_amount" />
+
+        <TextView
+            android:id="@+id/list_multiple_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/listviewtext"
+            app:layout_constraintStart_toStartOf="@+id/listviewtext"
+            app:layout_constraintTop_toBottomOf="@+id/listviewtext" />
 
     <TextView
-        android:id="@+id/list_multiple_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/listviewtext"
-        app:layout_constraintStart_toStartOf="@+id/listviewtext"
-        app:layout_constraintTop_toBottomOf="@+id/listviewtext" />
+        android:layout_marginBottom="8dp"
+        android:text="@string/name_edit"
+        app:layout_constraintBottom_toTopOf="@+id/ed_ingredients_name"
+        app:layout_constraintEnd_toEndOf="@+id/ed_ingredients_name"
+        app:layout_constraintStart_toStartOf="@+id/ed_ingredients_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/amount_edit"
+        app:layout_constraintBottom_toTopOf="@+id/ed_ingredients_amount"
+        app:layout_constraintEnd_toEndOf="@+id/ed_ingredients_amount"
+        app:layout_constraintStart_toStartOf="@+id/ed_ingredients_amount" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
