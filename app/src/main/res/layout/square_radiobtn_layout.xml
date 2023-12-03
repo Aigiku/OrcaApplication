@@ -82,7 +82,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipe_mold_title" />
 
-
     <EditText
         android:id="@+id/square_recipe_mold_weight"
         style="@style/MyEditTextStyle"

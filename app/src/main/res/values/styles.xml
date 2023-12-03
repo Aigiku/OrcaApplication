@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyEditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/edit_field_design</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:digits">0123456789.</item>
+    </style>
+
+    <style name="MyEditTextStyleDone" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/edit_field_design</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:digits">0123456789.</item>
+    </style>
+</resources>
