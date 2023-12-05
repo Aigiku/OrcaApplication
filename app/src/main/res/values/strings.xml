@@ -23,7 +23,7 @@
 
     <string name="apply_btn_text">倍率を適用する</string>
     <string name="add_btn_text">リストへ追加</string>
-    
+
     <string name="ed_ingredients_name">材料名</string>
     <string name="ed_ingredients_amount">量（g）</string>
 </resources>
