@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var circleResult: Double = 0.0
     private var squareResult: Double = 0.0
     private var magnificationResult: Double = 0.0
-    private val itemList = mutableListOf<ListItemData>()
+    val itemList = mutableListOf<ListItemData>()
 
     //    private val itemList = mutableListOf<ListItemData>()
     private lateinit var recyclerView: RecyclerView
@@ -70,6 +70,13 @@ class MainActivity : AppCompatActivity() {
             if (itemNames.isEmpty() || itemAmountBefore.text.toString().isEmpty()) {
                 showEmptyAlert()
                 return@setOnClickListener
+            } else if (itemNames.length >= 11) {
+            showNameTooLongAlert()
+                return@setOnClickListener
+            } else if (itemAmount >= 2001){
+                showNumLongAlert()
+                return@setOnClickListener
+
             }
 
 
@@ -169,6 +176,26 @@ class MainActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("エラー")
             .setMessage("すべての項目を入力してください")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    fun showNameTooLongAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("エラー")
+            .setMessage("材料名は10文字以下にしてください")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    fun showNumLongAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("エラー")
+            .setMessage("重量は2000g以下にしてください")
             .setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }

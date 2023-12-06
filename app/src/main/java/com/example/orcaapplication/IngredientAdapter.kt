@@ -1,5 +1,6 @@
 package com.example.orcaapplication
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,14 +13,37 @@ class IngredientAdapter(private val itemList: MutableList<ListItemData>, private
 
 
 
-
     //    各行のビュー要素を保持するための内部クラスを定義。
-    class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class IngredientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemName: TextView = itemView.findViewById(R.id.list_ingredience_name)
         val itemAmountBefore: TextView = itemView.findViewById(R.id.list_ingredience_before_amout)
         //計算後の値を表示　itemAmountAfter
         val itemAmountAfter: TextView = itemView.findViewById(R.id.list_ingredience_after_amout)
+        init {
+            itemView.setOnClickListener {
+                val position:Int = adapterPosition
+//                val listPosition = itemList[position]
+
+                //１４）アラートダイアログ
+                AlertDialog.Builder(itemView.context)
+                    //.setTitle("${listPosition.myTodo}")
+                    .setTitle("確認")
+                    .setMessage("本当に削除しますか")
+                    //１５）yesボタンを押した時の処理
+                    .setPositiveButton("削除する"){ _, _ ->
+                        itemList.removeAt(position)
+                        //１６）表示を更新
+                        notifyItemRemoved(position)
+                    }
+                    .setNegativeButton("しない",null)
+                    .show()
+            }
+        }
     }
+
+
+
+
 
     fun updateResult(useValue: Double) {
         this.useValue = useValue
@@ -41,10 +65,10 @@ class IngredientAdapter(private val itemList: MutableList<ListItemData>, private
 
 
         holder.itemName.text = item.name
-        holder.itemAmountBefore.text = String.format("%.2f",item.amount)
+        holder.itemAmountBefore.text = String.format("%.1f",item.amount)
 
         val result: Double = item.amount * useValue
-        val formattedResult = String.format("%.2f", result)
+        val formattedResult = String.format("%.1f", result)
         holder.itemAmountAfter.text = formattedResult
 
     }
@@ -158,3 +182,5 @@ class IngredientAdapter(private val itemList: MutableList<ListItemData>, private
 //        return myList.size
 //    }
 //}
+
+
