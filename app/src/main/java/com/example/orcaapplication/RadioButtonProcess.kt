@@ -47,7 +47,13 @@ class RadioButtonProcess(
          val circleRecipeDiameter: EditText,
          val circleRecipeHeight: EditText
     ) {
+        fun circleEditIdReturn(){
+
+        }
+
+
         fun calculateCircle(): Double {
+
             //半径をそれぞれ求める
             val myRadius = (circleMyDiameter.text.toString().toDoubleOrNull() ?: 0.0) / 2
             val myHeight = circleMyHeight.text.toString().toDoubleOrNull() ?: 0.0
@@ -70,12 +76,12 @@ class RadioButtonProcess(
 
 
     class CalculateSquare(
-        private val squareMyVertical: EditText,
-        private val squareMyWidth: EditText,
-        private val squareMyHeight: EditText,
-        private val squareRecipeVertical: EditText,
-        private val squareRecipeWidth: EditText,
-        private val squareRecipeHeight: EditText
+        val squareMyVertical: EditText,
+        val squareMyWidth: EditText,
+        val squareMyHeight: EditText,
+        val squareRecipeVertical: EditText,
+        val squareRecipeWidth: EditText,
+        val squareRecipeHeight: EditText
     ){
         fun calculateSquare(): Double {
             val myHeight = squareMyHeight.text.toString().toDoubleOrNull() ?: 0.0
@@ -97,7 +103,7 @@ class RadioButtonProcess(
 
     }
 
-    class Magnification(private val magnification: EditText){
+    class Magnification(val magnification: EditText){
 
         fun getMagnification(): Double {
             val magnificationText = magnification.text.toString()

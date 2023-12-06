@@ -19,7 +19,6 @@ class IngredientAdapter(private val itemList: MutableList<ListItemData>, private
         val itemAmountBefore: TextView = itemView.findViewById(R.id.list_ingredience_before_amout)
         //計算後の値を表示　itemAmountAfter
         val itemAmountAfter: TextView = itemView.findViewById(R.id.list_ingredience_after_amout)
-
     }
 
     fun updateResult(useValue: Double) {
@@ -44,7 +43,7 @@ class IngredientAdapter(private val itemList: MutableList<ListItemData>, private
         holder.itemName.text = item.name
         holder.itemAmountBefore.text = String.format("%.2f",item.amount)
 
-        var result: Double = item.amount * useValue
+        val result: Double = item.amount * useValue
         val formattedResult = String.format("%.2f", result)
         holder.itemAmountAfter.text = formattedResult
 

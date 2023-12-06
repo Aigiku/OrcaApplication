@@ -5,6 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.orcaapplication"
+
     compileSdk = 34
 
     defaultConfig {

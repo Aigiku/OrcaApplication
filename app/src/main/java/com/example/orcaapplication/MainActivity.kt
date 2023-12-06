@@ -1,5 +1,6 @@
 package com.example.orcaapplication
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -17,29 +18,29 @@ class MainActivity : AppCompatActivity() {
     private lateinit var calculateSquare: CalculateSquare
     private lateinit var returnMagnification: Magnification
     private lateinit var applyButton: Button
-    private lateinit var addButton:Button
+    private lateinit var addButton: Button
     private var circleResult: Double = 0.0
     private var squareResult: Double = 0.0
     private var magnificationResult: Double = 0.0
     private val itemList = mutableListOf<ListItemData>()
 
-//    private val itemList = mutableListOf<ListItemData>()
-    private lateinit var recyclerView : RecyclerView
-    private var adapterUseValue:Double = 0.0
+    //    private val itemList = mutableListOf<ListItemData>()
+    private lateinit var recyclerView: RecyclerView
+    private var adapterUseValue: Double = 0.0
     private var adapter = IngredientAdapter(itemList, adapterUseValue)
 
-//    @SuppressLint("NotifyDataSetChanged")
+    //    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
+        // ラジオボタンの項目とグループ
         val radioGroup = findViewById<RadioGroup>(R.id.mold_tybe_radiogroup)
         val circleEdView = findViewById<ConstraintLayout>(R.id.circle_edview)
         val squareEdView = findViewById<ConstraintLayout>(R.id.square_edview)
         val magnificationEdView = findViewById<ConstraintLayout>(R.id.magnification_edview)
 
+        //アダプターで使用するリスト
         val listMultipleView = findViewById<TextView>(R.id.list_multiple_view)
 
         //アダプターやlistMultipleViewの表示に使う変数
@@ -54,39 +55,46 @@ class MainActivity : AppCompatActivity() {
         addButton = findViewById(R.id.addbtn)
 
 //    アダプターの設定。
-    adapter = IngredientAdapter(itemList,adapterUseValue)
-    recyclerView = findViewById(R.id.recyclerView)
-    recyclerView.adapter = adapter
-    recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = IngredientAdapter(itemList, adapterUseValue)
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-    addButton.setOnClickListener {
-//
-        val itemName: EditText = findViewById(R.id.ed_ingredients_name)
-        val itemAmountBefore: EditText = findViewById(R.id.ed_ingredients_amount)
-        val itemNames = itemName.text.toString()
-        val itemAmount = itemAmountBefore.text.toString().toDoubleOrNull() ?: 0.0
+        addButton.setOnClickListener {
 
-        val newItem = ListItemData(itemNames, itemAmount)
-        itemList.add(newItem)
-        adapter.notifyItemInserted(itemList.lastIndex)
+            val itemName: EditText = findViewById(R.id.ed_ingredients_name)
+            val itemAmountBefore: EditText = findViewById(R.id.ed_ingredients_amount)
+            val itemNames = itemName.text.toString()
+            val itemAmount = itemAmountBefore.text.toString().toDoubleOrNull() ?: 0.0
 
-        itemName.text.clear()
-        itemAmountBefore.text.clear()
-
-    }
+            if (itemNames.isEmpty() || itemAmountBefore.text.toString().isEmpty()) {
+                showEmptyAlert()
+                return@setOnClickListener
+            }
 
 
+            val newItem = ListItemData(itemNames, itemAmount)
+            itemList.add(newItem)
+            adapter.notifyItemInserted(itemList.lastIndex)
+
+            itemName.text.clear()
+            itemAmountBefore.text.clear()
+
+        }
 
 
-    val radioButtonProcess = RadioButtonProcess(
+        //以下、ラジオボタン関連の処理群
+
+        //ラジオボタンのグループとその中の項目を渡す。
+        val radioButtonProcess = RadioButtonProcess(
             radioGroup, circleEdView, squareEdView, magnificationEdView
         )
 
-    //選択されているラジオボタンに応じてレイアウトの表示を切り替える
+        //選択されているラジオボタンに応じてレイアウトの表示を切り替える
         radioButtonProcess.setupRadioGroupListener()
 
 
-    // 各ラジオボタンレイアウトで使用されている項目をクラスに渡す。
+        // 各ラジオボタンレイアウトで使用されている項目(EditText)をクラスに渡す。
         calculateCircle = CalculateCircle(
             findViewById(R.id.circle_my_mold_diameter),
             findViewById(R.id.circle_my_mold_height),
@@ -110,11 +118,17 @@ class MainActivity : AppCompatActivity() {
 
 
         // 選択されているラジオボタンに基づいて結果を計算し、表示する
-//        各戻り値をadapterUseValueに格納し、aplayボタンを押した時にその値をアダプターに渡すようにする。
+//        各戻り値をadapterUseValueに格納し、applyボタンを押した時にその値をアダプターに渡すようにする。
         applyButton.setOnClickListener {
 
             when (radioGroup.checkedRadioButtonId) {
                 R.id.radio_circle_title -> {
+                    //入力欄の空欄チェック。
+                    if (circleEdreturn()) {
+                        showEmptyAlert()
+                        return@setOnClickListener
+                    }
+//                    空欄でなければ、倍率を渡す
                     circleResult = calculateCircle.calculateCircle()
                     adapterUseValue = decimalFormat.format(circleResult).toDouble()
                     adapter.updateResult(adapterUseValue)
@@ -123,6 +137,11 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.radio_square_title -> {
+
+                    if (squareEdreturn()) {
+                        showEmptyAlert()
+                        return@setOnClickListener
+                    }
                     squareResult = calculateSquare.calculateSquare()
                     adapterUseValue = decimalFormat.format(squareResult).toDouble()
                     adapter.updateResult(adapterUseValue)
@@ -130,6 +149,12 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.radio_magnification_title -> {
+
+                    if (returnMagnification.magnification.text.toString().isEmpty()) {
+                        showEmptyAlert()
+                        return@setOnClickListener
+                    }
+
                     magnificationResult = returnMagnification.getMagnification()
                     adapterUseValue = decimalFormat.format(magnificationResult).toDouble()
                     adapter.updateResult(adapterUseValue)
@@ -138,38 +163,39 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    fun showEmptyAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("エラー")
+            .setMessage("すべての項目を入力してください")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+
+    //各レイアウトのIDを取得する関数。　空欄判定のifに使用
+    fun circleEdreturn(): Boolean {
+        return(
+                calculateCircle.circleMyDiameter.text.toString().isEmpty() ||
+                calculateCircle.circleMyHeight.text.toString().isEmpty() ||
+                calculateCircle.circleRecipeDiameter.text.toString().isEmpty()||
+                calculateCircle.circleRecipeHeight.text.toString().isEmpty()
+                )
+    }
+
+    fun squareEdreturn(): Boolean {
+        return (calculateSquare.squareMyVertical.text.toString().isEmpty() ||
+                calculateSquare.squareMyHeight.text.toString().isEmpty() ||
+                calculateSquare.squareMyWidth.text.toString().isEmpty() ||
+                calculateSquare.squareRecipeVertical.text.toString().isEmpty() ||
+                calculateSquare.squareRecipeHeight.text.toString().isEmpty() ||
+                calculateSquare.squareRecipeWidth.text.toString().isEmpty()
+                )
+    }
+
 }
 
 
-//メモ用　無視してOK
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
-//
-//        editTextName = findViewById(R.id.editTextName)
-//        editTextAmount = findViewById(R.id.editTextAmount)
-//        recyclerView = findViewById(R.id.recyclerView)
-//
-//        adapter = MyAdapter(itemList)
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//        recyclerView.adapter = adapter
-//
-//        val addButton: Button = findViewById(R.id.addButton)
-//        addButton.setOnClickListener {
-//            val name = editTextName.text.toString()
-//            val amount = editTextAmount.text.toString().toDoubleOrNull()
-//
-//            if (!name.isNullOrEmpty() && amount != null) {
-//                val listItem = ListItem(name, amount)
-//                itemList.add(listItem)
-//                adapter.notifyItemInserted(itemList.size - 1)
-//                editTextName.text.clear()
-//                editTextAmount.text.clear()
-//            } else {
-//                // Handle invalid input
-//                Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show()
-//            }
-//
-//        }
-//    }
-//}
