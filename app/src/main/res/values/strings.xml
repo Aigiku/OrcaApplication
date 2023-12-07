@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OrcaApplication</string>
+    <string name="app_name">材料計算</string>
 
     <string name="radio_circle_title">丸型</string>
     <string name="radio_square_title">スクエア型</string>
