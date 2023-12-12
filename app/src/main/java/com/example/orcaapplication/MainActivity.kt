@@ -24,12 +24,10 @@ class MainActivity : AppCompatActivity() {
     private var magnificationResult: Double = 0.0
     val itemList = mutableListOf<ListItemData>()
 
-    //    private val itemList = mutableListOf<ListItemData>()
     private lateinit var recyclerView: RecyclerView
     private var adapterUseValue: Double = 0.0
     private var adapter = IngredientAdapter(itemList, adapterUseValue)
 
-    //    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,18 +37,18 @@ class MainActivity : AppCompatActivity() {
         val circleEdView = findViewById<ConstraintLayout>(R.id.circle_edview)
         val squareEdView = findViewById<ConstraintLayout>(R.id.square_edview)
         val magnificationEdView = findViewById<ConstraintLayout>(R.id.magnification_edview)
+        val exlanationView = findViewById<ConstraintLayout>(R.id.explanation_view_no_radiobutton)
 
         //アダプターで使用するリスト
         val listMultipleView = findViewById<TextView>(R.id.list_multiple_view)
 
         //アダプターやlistMultipleViewの表示に使う変数
-
         listMultipleView.text = adapterUseValue.toString()
 
 //        小数点第二までで切り捨てる。
         val decimalFormat = DecimalFormat("#.##")
 
-
+        val alertProsess = AlertProsess(this)
         applyButton = findViewById(R.id.applybtn)
         addButton = findViewById(R.id.addbtn)
 
@@ -68,13 +66,13 @@ class MainActivity : AppCompatActivity() {
             val itemAmount = itemAmountBefore.text.toString().toDoubleOrNull() ?: 0.0
 
             if (itemNames.isEmpty() || itemAmountBefore.text.toString().isEmpty()) {
-                showEmptyAlert()
+                alertProsess.showEmptyAlert()
                 return@setOnClickListener
             } else if (itemNames.length >= 11) {
-            showNameTooLongAlert()
+                alertProsess.showNameTooLongAlert()
                 return@setOnClickListener
             } else if (itemAmount >= 2001){
-                showNumLongAlert()
+                alertProsess.showNumLongAlert()
                 return@setOnClickListener
 
             }
@@ -94,7 +92,7 @@ class MainActivity : AppCompatActivity() {
 
         //ラジオボタンのグループとその中の項目を渡す。
         val radioButtonProcess = RadioButtonProcess(
-            radioGroup, circleEdView, squareEdView, magnificationEdView
+            radioGroup, circleEdView, squareEdView, magnificationEdView,exlanationView
         )
 
         //選択されているラジオボタンに応じてレイアウトの表示を切り替える
@@ -132,7 +130,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.radio_circle_title -> {
                     //入力欄の空欄チェック。
                     if (circleEdreturn()) {
-                        showEmptyAlert()
+                        alertProsess.showEmptyAlert()
                         return@setOnClickListener
                     }
 //                    空欄でなければ、倍率を渡す
@@ -146,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.radio_square_title -> {
 
                     if (squareEdreturn()) {
-                        showEmptyAlert()
+                        alertProsess.showEmptyAlert()
                         return@setOnClickListener
                     }
                     squareResult = calculateSquare.calculateSquare()
@@ -158,7 +156,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.radio_magnification_title -> {
 
                     if (returnMagnification.magnification.text.toString().isEmpty()) {
-                        showEmptyAlert()
+                        alertProsess.showEmptyAlert()
+                        return@setOnClickListener
+                    } else if (returnMagnification.magnification.text.toString().toDouble() > 10 ){
+                        alertProsess.showMagnifiNumLongAlert()
                         return@setOnClickListener
                     }
 
@@ -172,35 +173,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun showEmptyAlert() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("エラー")
-            .setMessage("すべての項目を入力してください")
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
-    }
 
-    fun showNameTooLongAlert() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("エラー")
-            .setMessage("材料名は10文字以下にしてください")
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
-    }
-
-    fun showNumLongAlert() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("エラー")
-            .setMessage("重量は2000g以下にしてください")
-            .setPositiveButton("OK") { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
-    }
 
 
     //各レイアウトのIDを取得する関数。　空欄判定のifに使用

@@ -11,6 +11,7 @@ class RadioButtonProcess(
     private val circleEdView: ConstraintLayout,
     private val squareEdView: ConstraintLayout,
     private val magnificationEdView: ConstraintLayout,
+    private val explanationView: ConstraintLayout
 
 ) {
     init {
@@ -22,23 +23,27 @@ class RadioButtonProcess(
             when (checkedId) {
                 R.id.radio_circle_title -> {
                     circleEdView.visibility = View.VISIBLE
-                    squareEdView.visibility = View.INVISIBLE
-                    magnificationEdView.visibility = View.INVISIBLE
+                    squareEdView.visibility = View.GONE
+                    magnificationEdView.visibility = View.GONE
+                    explanationView.visibility = View.GONE
                 }
                 R.id.radio_square_title -> {
                     circleEdView.visibility = View.INVISIBLE
                     squareEdView.visibility = View.VISIBLE
-                    magnificationEdView.visibility = View.INVISIBLE
+                    magnificationEdView.visibility = View.GONE
+                    explanationView.visibility = View.GONE
+
                 }
                 R.id.radio_magnification_title -> {
                     circleEdView.visibility = View.INVISIBLE
-                    squareEdView.visibility = View.INVISIBLE
+                    squareEdView.visibility = View.GONE
                     magnificationEdView.visibility = View.VISIBLE
+                    explanationView.visibility = View.GONE
+
                 }
             }
         }
     }
-
 }
 
     class CalculateCircle(
@@ -47,11 +52,6 @@ class RadioButtonProcess(
          val circleRecipeDiameter: EditText,
          val circleRecipeHeight: EditText
     ) {
-        fun circleEditIdReturn(){
-
-        }
-
-
         fun calculateCircle(): Double {
 
             //半径をそれぞれ求める

@@ -8,22 +8,33 @@
 
     <string name="my_mold">使用する型</string>
     <string name="recipe_mold">レシピの型</string>
+
     <string name="mold_height">高さ（cm）</string>
     <string name="mold_weight">横幅（cm）</string>
     <string name="mold_vertical">縦幅（cm）</string>
     <string name="mold_diameter">直径（cm）</string>
-    <string name="magnification">倍率を入力してください</string>
+
+    <string name="magnification">倍率を入力してください\n（上限 10倍）</string>
     <string name="magnification_ed_hint">倍率を入力</string>
+
     <string name="multiple_text">倍</string>
     <string name="list_multiple_viewtext">現在の倍率</string>
+
     <string name="list_unit">g</string>
+
     <string name="name_edit">材料名(10文字まで)</string>
     <string name="amount_edit">使用量（2000gまで）</string>
+    <string name="ed_ingredients_name">材料名</string>
+    <string name="ed_ingredients_amount">量（g）</string>
 
+    <string name="list_title_name">材料名</string>
+    <string name="list_title_amount_before">計算前</string>
+    <string name="list_title_amount_after">計算後</string>
 
     <string name="apply_btn_text">倍率を適用する</string>
     <string name="add_btn_text">リストへ追加</string>
 
-    <string name="ed_ingredients_name">材料名</string>
-    <string name="ed_ingredients_amount">量（g）</string>
+    <string name="explanation_text">変換したい型の形式\nまたは\n倍率を選択して入力して下さい</string>
+
+
 </resources>
