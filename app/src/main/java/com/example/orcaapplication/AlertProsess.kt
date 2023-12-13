@@ -44,7 +44,5 @@ class AlertProsess(private val context: Context) {
                 dialog.dismiss()
             }
             .show()
-
-
     }
 }

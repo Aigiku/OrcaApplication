@@ -27,7 +27,7 @@ class IngredientAdapter(private val itemList: MutableList<ListItemData>, private
 
                 //１４）アラートダイアログ
                 AlertDialog.Builder(itemView.context)
-                    .setTitle("${item.name}")
+                    .setTitle(item.name)
                     .setMessage("上記の項目を削除しますか？")
                     .setPositiveButton("削除する"){ _, _ ->
                         itemList.removeAt(position)

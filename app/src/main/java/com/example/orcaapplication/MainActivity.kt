@@ -17,14 +17,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var calculateCircle: CalculateCircle
     private lateinit var calculateSquare: CalculateSquare
     private lateinit var returnMagnification: Magnification
+
     private lateinit var applyButton: Button
     private lateinit var addButton: Button
+
     private var circleResult: Double = 0.0
     private var squareResult: Double = 0.0
     private var magnificationResult: Double = 0.0
+
     val itemList = mutableListOf<ListItemData>()
 
     private lateinit var recyclerView: RecyclerView
+
     private var adapterUseValue: Double = 0.0
     private var adapter = IngredientAdapter(itemList, adapterUseValue)
 
@@ -49,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         val decimalFormat = DecimalFormat("#.##")
 
         val alertProsess = AlertProsess(this)
+
         applyButton = findViewById(R.id.applybtn)
         addButton = findViewById(R.id.addbtn)
 

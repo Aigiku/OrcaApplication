@@ -13,7 +13,7 @@ class SplashOrca : AppCompatActivity() {
 
         val displayTime: Long = 1300
 
-//            val splashImageView = findViewById<ImageView>(R.id.splash_orca_view)
+            val splashImageView = findViewById<ImageView>(R.id.splash_orca_view)
 
             Handler().postDelayed({
                 val intent = Intent(this, MainActivity::class.java)
