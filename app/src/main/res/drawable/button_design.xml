@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 押されたとき -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="15dp"/>
+            <gradient
+                android:startColor="#0068b7"
+                android:endColor="#bbdbf3"
+                android:angle="45"
+                />
+        </shape>
+    </item>
+
+    <!-- 押されていないとき -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="15dp"/>
+            <gradient
+                android:startColor="#0068b7"
+                android:endColor="#68a4d9"
+                android:angle="45"
+                />
+        </shape>
+    </item>
+</selector>
