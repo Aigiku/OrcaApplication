@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
 
 
-    //    各型クラスの計算結果を格納する変数。0.0で初期化
+    //    各型クラスの計算結果を格納する変数。0.0で初期化。
     private var circleResult: Double = 0.0
     private var squareResult: Double = 0.0
     private var magnificationResult: Double = 0.0
