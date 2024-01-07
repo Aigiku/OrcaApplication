@@ -21,13 +21,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var applyButton: Button
     private lateinit var addButton: Button
 
+    private lateinit var recyclerView: RecyclerView
+
+
+    //    各型クラスの計算結果を格納する変数。0.0で初期化
     private var circleResult: Double = 0.0
     private var squareResult: Double = 0.0
     private var magnificationResult: Double = 0.0
 
     val itemList = mutableListOf<ListItemData>()
 
-    private lateinit var recyclerView: RecyclerView
 
     private var adapterUseValue: Double = 0.0
     private var adapter = IngredientAdapter(itemList, adapterUseValue)
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         //アダプターで使用するリスト
         val listMultipleView = findViewById<TextView>(R.id.list_multiple_view)
 
-        //アダプターやlistMultipleViewの表示に使う変数
+        //現在の倍率を表示するテキストビュー
         listMultipleView.text = adapterUseValue.toString()
 
 //        小数点第二までで切り捨てる。
@@ -82,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-
+//データクラスに名前と量を渡す。
             val newItem = ListItemData(itemNames, itemAmount)
             itemList.add(newItem)
             adapter.notifyItemInserted(itemList.lastIndex)
@@ -95,12 +98,12 @@ class MainActivity : AppCompatActivity() {
 
         //以下、ラジオボタン関連の処理群
 
-        //ラジオボタンのグループとその中の項目を渡す。
+        //ラジオボタンのグループとその中の項目をクラスに渡す。
         val radioButtonProcess = RadioButtonProcess(
             radioGroup, circleEdView, squareEdView, magnificationEdView,exlanationView
         )
 
-        //選択されているラジオボタンに応じてレイアウトの表示を切り替える
+        //選択されているラジオボタンに応じてレイアウトの表示を切り替える関数を呼び出す。
         radioButtonProcess.setupRadioGroupListener()
 
 
@@ -129,6 +132,8 @@ class MainActivity : AppCompatActivity() {
 
         // 選択されているラジオボタンに基づいて結果を計算し、表示する
 //        各戻り値をadapterUseValueに格納し、applyボタンを押した時にその値をアダプターに渡すようにする。
+//        倍率のみ10倍が上限。　　円形・スクエア型に数値判定はつけていない。
+        //空欄チェックー＞空欄でなければadapterUseValueに倍率を代入、updateResult関数に伝えリスト倍率を更新する。
         applyButton.setOnClickListener {
 
             when (radioGroup.checkedRadioButtonId) {
@@ -164,6 +169,7 @@ class MainActivity : AppCompatActivity() {
                         alertProsess.showEmptyAlert()
                         return@setOnClickListener
                     } else if (returnMagnification.magnification.text.toString().toDouble() > 10 ){
+                        //倍率が10倍以上の場合、アラートを発生。
                         alertProsess.showMagnifiNumLongAlert()
                         return@setOnClickListener
                     }

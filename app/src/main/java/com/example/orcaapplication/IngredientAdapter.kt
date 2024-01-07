@@ -44,6 +44,7 @@ class IngredientAdapter(private val itemList: MutableList<ListItemData>, private
 
 
 
+    //各ラジオボタンの入力から計算結果を受け取り、リスト全体に知らせる。
     fun updateResult(useValue: Double) {
         this.useValue = useValue
         notifyDataSetChanged()
