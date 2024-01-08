@@ -36,5 +36,6 @@
 
     <string name="explanation_text">変換したい型の形式\nまたは\n倍率を選択して入力して下さい</string>
 
+    <string name="tip">各項目　上限30cm</string>
 
 </resources>

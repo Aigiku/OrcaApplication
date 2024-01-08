@@ -39,7 +39,6 @@ class RadioButtonProcess(
                     squareEdView.visibility = View.GONE
                     magnificationEdView.visibility = View.VISIBLE
                     explanationView.visibility = View.GONE
-
                 }
             }
         }
@@ -67,12 +66,23 @@ class RadioButtonProcess(
             val circleResult = myVolume / recipeVolume
 
             return circleResult
+        }
 
+        fun circleInputItemEmptyJudgment(): Boolean {
+            return (
+                    circleMyDiameter.text.toString().isEmpty() ||
+                    circleMyHeight.text.toString().isEmpty() ||
+                    circleRecipeDiameter.text.toString().isEmpty() ||
+                    circleRecipeHeight.text.toString().isEmpty())
+        }
+
+        fun circleInputItemSizeJudgment(): Boolean {
+            return (circleMyDiameter.text.toString().toInt() > 30 ||
+                    circleMyHeight.text.toString().toInt() > 30 ||
+                    circleRecipeDiameter.text.toString().toInt() > 30 ||
+                    circleRecipeHeight.text.toString().toInt() > 30)
         }
     }
-
-
-
 
 
     class CalculateSquare(
@@ -82,7 +92,7 @@ class RadioButtonProcess(
         val squareRecipeVertical: EditText,
         val squareRecipeWidth: EditText,
         val squareRecipeHeight: EditText
-    ){
+    ) {
         fun calculateSquare(): Double {
             val myHeight = squareMyHeight.text.toString().toDoubleOrNull() ?: 0.0
             val myWidth = squareMyWidth.text.toString().toDoubleOrNull() ?: 0.0
@@ -100,8 +110,28 @@ class RadioButtonProcess(
             return squareResult
         }
 
+        //        空欄判定
+        fun squareInputItemEmptyJudgment(): Boolean {
+            return (
+                    squareMyVertical.text.toString().isEmpty() ||
+                            squareMyWidth.text.toString().isEmpty() ||
+                            squareMyHeight.text.toString().isEmpty() ||
+                            squareRecipeVertical.text.toString().isEmpty() ||
+                            squareRecipeWidth.text.toString().isEmpty() ||
+                            squareRecipeHeight.text.toString().isEmpty())
+        }
 
+        fun squareInputItemSizeJudgment(): Boolean {
+            return (
+                            squareMyVertical.text.toString().toInt() > 30 ||
+                            squareMyWidth.text.toString().toInt() > 30 ||
+                            squareMyHeight.text.toString().toInt() > 30 ||
+                            squareRecipeVertical.text.toString().toInt() > 30 ||
+                            squareRecipeWidth.text.toString().toInt() > 30 ||
+                            squareRecipeHeight.text.toString().toInt() > 30)
+        }
     }
+
 
     class Magnification(val magnification: EditText){
 

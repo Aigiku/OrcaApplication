@@ -107,4 +107,13 @@
         app:layout_constraintStart_toEndOf="@+id/square_recipe_mold_weight"
         app:layout_constraintTop_toBottomOf="@+id/recipe_mold_title" />
 
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/tip"
+        app:layout_constraintStart_toEndOf="@+id/my_mold_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

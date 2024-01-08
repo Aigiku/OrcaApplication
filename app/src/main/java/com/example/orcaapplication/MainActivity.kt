@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             } else if (itemNames.length >= 11) {
                 alertProsess.showNameTooLongAlert()
                 return@setOnClickListener
-            } else if (itemAmount >= 2001){
+            } else if (itemAmount >= 2001) {
                 alertProsess.showNumLongAlert()
                 return@setOnClickListener
 
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 
         //ラジオボタンのグループとその中の項目をクラスに渡す。
         val radioButtonProcess = RadioButtonProcess(
-            radioGroup, circleEdView, squareEdView, magnificationEdView,exlanationView
+            radioGroup, circleEdView, squareEdView, magnificationEdView, exlanationView
         )
 
         //選択されているラジオボタンに応じてレイアウトの表示を切り替える関数を呼び出す。
@@ -132,35 +132,43 @@ class MainActivity : AppCompatActivity() {
 
         // 選択されているラジオボタンに基づいて結果を計算し、表示する
 //        各戻り値をadapterUseValueに格納し、applyボタンを押した時にその値をアダプターに渡すようにする。
-//        倍率のみ10倍が上限。　　円形・スクエア型に数値判定はつけていない。
         //空欄チェックー＞空欄でなければadapterUseValueに倍率を代入、updateResult関数に伝えリスト倍率を更新する。
         applyButton.setOnClickListener {
 
             when (radioGroup.checkedRadioButtonId) {
                 R.id.radio_circle_title -> {
                     //入力欄の空欄チェック。
-                    if (circleEdreturn()) {
+                    if (calculateCircle.circleInputItemEmptyJudgment()) {
                         alertProsess.showEmptyAlert()
                         return@setOnClickListener
+                    }else if (calculateCircle.circleInputItemSizeJudgment()){
+//                        30以上の入力でアラートを発生
+                        alertProsess.showTypeSizeAlert()
+                        return@setOnClickListener
+                    }else {
+//                    空欄,30以上でなければ、倍率を渡す
+                        circleResult = calculateCircle.calculateCircle()
+                        adapterUseValue = decimalFormat.format(circleResult).toDouble()
+                        adapter.updateResult(adapterUseValue)
+                        listMultipleView.text = adapterUseValue.toString()
                     }
-//                    空欄でなければ、倍率を渡す
-                    circleResult = calculateCircle.calculateCircle()
-                    adapterUseValue = decimalFormat.format(circleResult).toDouble()
-                    adapter.updateResult(adapterUseValue)
-                    listMultipleView.text = adapterUseValue.toString()
-
                 }
 
                 R.id.radio_square_title -> {
 
-                    if (squareEdreturn()) {
+                    if (calculateSquare.squareInputItemEmptyJudgment()) {
                         alertProsess.showEmptyAlert()
                         return@setOnClickListener
+                    }else if (calculateSquare.squareInputItemSizeJudgment()){
+//                        30以上の入力でアラートを発生
+                        alertProsess.showTypeSizeAlert()
+                        return@setOnClickListener
+                    }else {
+                        squareResult = calculateSquare.calculateSquare()
+                        adapterUseValue = decimalFormat.format(squareResult).toDouble()
+                        adapter.updateResult(adapterUseValue)
+                        listMultipleView.text = adapterUseValue.toString()
                     }
-                    squareResult = calculateSquare.calculateSquare()
-                    adapterUseValue = decimalFormat.format(squareResult).toDouble()
-                    adapter.updateResult(adapterUseValue)
-                    listMultipleView.text = adapterUseValue.toString()
                 }
 
                 R.id.radio_magnification_title -> {
@@ -168,7 +176,7 @@ class MainActivity : AppCompatActivity() {
                     if (returnMagnification.magnification.text.toString().isEmpty()) {
                         alertProsess.showEmptyAlert()
                         return@setOnClickListener
-                    } else if (returnMagnification.magnification.text.toString().toDouble() > 10 ){
+                    } else if (returnMagnification.magnification.text.toString().toDouble() > 10) {
                         //倍率が10倍以上の場合、アラートを発生。
                         alertProsess.showMagnifiNumLongAlert()
                         return@setOnClickListener
@@ -182,31 +190,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
-
-
-    //各レイアウトのIDを取得する関数。　空欄判定のifに使用
-    fun circleEdreturn(): Boolean {
-        return(
-                calculateCircle.circleMyDiameter.text.toString().isEmpty() ||
-                calculateCircle.circleMyHeight.text.toString().isEmpty() ||
-                calculateCircle.circleRecipeDiameter.text.toString().isEmpty()||
-                calculateCircle.circleRecipeHeight.text.toString().isEmpty()
-                )
-    }
-
-    fun squareEdreturn(): Boolean {
-        return (calculateSquare.squareMyVertical.text.toString().isEmpty() ||
-                calculateSquare.squareMyHeight.text.toString().isEmpty() ||
-                calculateSquare.squareMyWidth.text.toString().isEmpty() ||
-                calculateSquare.squareRecipeVertical.text.toString().isEmpty() ||
-                calculateSquare.squareRecipeHeight.text.toString().isEmpty() ||
-                calculateSquare.squareRecipeWidth.text.toString().isEmpty()
-                )
-    }
-
 }
-
-

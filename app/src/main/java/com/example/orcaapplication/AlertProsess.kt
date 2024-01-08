@@ -45,4 +45,14 @@ class AlertProsess(private val context: Context) {
             }
             .show()
     }
+
+    fun showTypeSizeAlert() {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("エラー：数値")
+            .setMessage("各項目は30cm以下で入力してください")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
 }
