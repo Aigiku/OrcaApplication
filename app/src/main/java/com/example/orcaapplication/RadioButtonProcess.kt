@@ -77,10 +77,10 @@ class RadioButtonProcess(
         }
 
         fun circleInputItemSizeJudgment(): Boolean {
-            return (circleMyDiameter.text.toString().toInt() > 30 ||
-                    circleMyHeight.text.toString().toInt() > 30 ||
-                    circleRecipeDiameter.text.toString().toInt() > 30 ||
-                    circleRecipeHeight.text.toString().toInt() > 30)
+            return (circleMyDiameter.text.toString().toDouble() > 30 ||
+                    circleMyHeight.text.toString().toDouble() > 30 ||
+                    circleRecipeDiameter.text.toString().toDouble() > 30 ||
+                    circleRecipeHeight.text.toString().toDouble() > 30)
         }
     }
 
@@ -123,12 +123,12 @@ class RadioButtonProcess(
 
         fun squareInputItemSizeJudgment(): Boolean {
             return (
-                            squareMyVertical.text.toString().toInt() > 30 ||
-                            squareMyWidth.text.toString().toInt() > 30 ||
-                            squareMyHeight.text.toString().toInt() > 30 ||
-                            squareRecipeVertical.text.toString().toInt() > 30 ||
-                            squareRecipeWidth.text.toString().toInt() > 30 ||
-                            squareRecipeHeight.text.toString().toInt() > 30)
+                            squareMyVertical.text.toString().toDouble() > 30 ||
+                            squareMyWidth.text.toString().toDouble() > 30 ||
+                            squareMyHeight.text.toString().toDouble() > 30 ||
+                            squareRecipeVertical.text.toString().toDouble() > 30 ||
+                            squareRecipeWidth.text.toString().toDouble() > 30 ||
+                            squareRecipeHeight.text.toString().toDouble() > 30)
         }
     }
 
